@@ -1,4 +1,3 @@
-# Importing the necessary libraries.
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -35,26 +34,33 @@ rf_clf.fit(X_train, y_train)
 log_reg = LogisticRegression(n_jobs = -1)
 log_reg.fit(X_train, y_train)
 
+
+
 @st.cache()
 def prediction(model, sepal_length, sepal_width, petal_length, petal_width):
-  species = model.predict([[sepal_length, sepal_width, petal_length, petal_width]])
-  species = species[0]
-  if species == 0:
-    return "Iris-setosa"
-  elif species == 1:
-    return "Iris-virginica"
-  else:
-    return "Iris-versicolor"  
+	
+
+	
+	species = model.predict([[sepal_length, sepal_width, petal_length, petal_width]])
+	species = species[0]
+	if species == 0:
+	  return "Iris-setosa"
+	elif species == 1:
+	  return "Iris-virginica"
+	else:
+	  return "Iris-versicolor"  
+	return svc_model,
 
 
+# Add title widget
 st.sidebar.title("Iris Species Prediction App")      
 
 # Add 4 sliders and store the value returned by them in 4 separate variables. 
-s_len = st.sidebar.slider("Sepal Length", float(iris_df["SepalLengthCm"].min()), float(iris_df["SepalLengthCm"].max()))
+s_len = st.sidebar.slider("Sepal Length", 0.0,10.0)
 # The 'float()' function converts the 'numpy.float' values to Python float values.
-s_wid = st.sidebar.slider("Sepal Width", float(iris_df["SepalWidthCm"].min()), float(iris_df["SepalWidthCm"].max()))
-p_len = st.sidebar.slider("Petal Length", float(iris_df["PetalLengthCm"].min()), float(iris_df["PetalLengthCm"].max()))
-p_wid = st.sidebar.slider("Petal Width", float(iris_df["PetalWidthCm"].min()), float(iris_df["PetalWidthCm"].max()))
+s_wid = st.sidebar.slider("Sepal Width", 0.0,10.0)
+p_len = st.sidebar.slider("Petal Length", 0.0,10.0)
+p_wid = st.sidebar.slider("Petal Width", 0.0,10.0)
 
 # Add a select box in the sidebar with the 'Classifier' label.
 # Also pass 3 options as a tuple ('Support Vector Machine', 'Logistic Regression', 'Random Forest Classifier').
